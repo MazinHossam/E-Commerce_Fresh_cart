@@ -1,0 +1,23 @@
+
+<div  class="p-6 ">
+  <h2 class="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white ">Top Brands</h2>
+
+  <div  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    @for (brand of myBrands; track $index) {
+    
+      <div data-aos="fade-up" class=" bg-white p-4 rounded-xl   text-center transition-transform transform hover:scale-105 duration-700 hover:shadow-[0_10px_60px_rgba(0,255,100,0.8)] shadow-[0_10px_40px_rgba(255,255,255,0.05)] dark:hover:shadow-emerald-600 ">
+        <img (click)="selectBrand(brand._id)" [src]="brand.image" class="cursor-pointer w-full object-contain mx-auto mb-4 transform transition duration-700">
+
+        @if (selectedBrandId === brand._id) {
+          <h1 class="text-gray-700 text-xl font-semibold mt-2">{{ brand.name }}</h1>
+         
+        }
+      </div>
+    }
+  </div>
+</div>
+
+
+
+
+

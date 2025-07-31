@@ -1,0 +1,177 @@
+
+<div class="foto flex flex-col lg:flex-row justify-evenly items-center my-7 mb-24 ">
+
+
+<section  class=" w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-5/12  my-7 rounded-lg shadow-lg">
+ 
+    <form action="" [formGroup]="registerforms" (ngSubmit)="submit()" class="py-4 px-3  dark:bg-gray-800 rounded-3xl shadow-[0_10px_40px_rgba(255,255,255,0.05)] border border-white/20 transition-all duration-800  dark:shadow-emerald-600">
+           <h1 class="font-bold text-4xl text-green-600 p-5 my-5">Register now : </h1>
+        <div class="mb-3 px-7">
+    <label for="Name" class="block mb-2 text-sm font-bold text-green-600" >Name : </label>
+    <input       formControlName="name"  type="text" id="Name" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 d">
+
+
+    @if (registerforms.get('name')?.errors && registerforms.get('name')?.touched) {
+        <div class="flex p-4 mb-4 my-3 text-sm text-red-800 rounded-lg bg-red-100 " role="alert">
+  <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+ 
+  <span class="sr-only">Danger</span>
+  <div>
+    <span class="font-medium">Ensure that these requirements are met:</span>
+      <ul class="mt-1.5 list-disc list-inside">
+        @if (registerforms.get('name')?.getError('required')) {
+              <li>Name is required</li>
+        }
+      
+        @if (registerforms.get('name')?.getError('minlength')) {
+              <li>The name must not be less than 3 letters</li>
+        }
+      
+        @if (registerforms.get('name')?.getError('maxlength')) {
+              <li>The name must not exceed 25 characters.</li>
+        }
+
+    </ul>
+  </div>
+
+</div>
+    }
+
+
+</div>
+
+
+        <div class="mb-3 px-7">
+    <label for="email" class="block mb-2 text-sm font-bold text-green-600" >Email : </label>
+    <input formControlName="email"  type="email" id="email" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 d">
+
+       @if (registerforms.get('email')?.errors && registerforms.get('email')?.touched) {
+        <div class="flex p-4 mb-4 my-3 text-sm text-red-800 rounded-lg bg-red-100 " role="alert">
+  <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+ 
+  <span class="sr-only">Danger</span>
+  <div>
+    <span class="font-medium">Ensure that these requirements are met:</span>
+      <ul class="mt-1.5 list-disc list-inside">
+        @if (registerforms.get('email')?.getError('required')) {
+              <li>Email is required</li>
+        }
+      
+        @if (registerforms.get('email')?.getError('email')) {
+              <li>Please enter a valid email address so we can contact</li>
+        }
+      
+    </ul>
+  </div>
+
+</div>
+    }
+
+</div>
+        <div class="mb-3 px-7">
+    <label for="password" class="block mb-2 text-sm font-bold text-green-600" >password : </label>
+    <input formControlName="password"  type="password" id="password" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 d">
+         @if (registerforms.get('password')?.errors && registerforms.get('password')?.touched) {
+        <div class="flex p-4 mb-4 my-3 text-sm text-red-800 rounded-lg bg-red-100 " role="alert">
+  <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+ 
+  <span class="sr-only">Danger</span>
+  <div>
+    <span class="font-medium">Ensure that these requirements are met:</span>
+      <ul class="mt-1.5 list-disc list-inside">
+        @if (registerforms.get('password')?.getError('required')) {
+              <li>password is required</li>
+        }
+      
+        @if (registerforms.get('password')?.getError('pattern')) {
+              <li>🔒 Password must be 6+ characters and contain only letters and numbers.</li>
+        }
+      
+    </ul>
+  </div>
+
+</div>
+    }
+
+</div>
+        <div class="mb-3 px-7">
+    <label for="rePassword" class="block mb-2 text-sm font-bold text-green-600" >rePassword : </label>
+    <input formControlName="rePassword"  type="password" id="rePassword" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 d">
+        
+ 
+        @if (registerforms.getError('mismatch') && registerforms.get("rePassword")?.touched){
+        <div class="flex p-4 mb-4 my-3 text-sm text-red-800 rounded-lg bg-red-100 " role="alert">
+  <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+ 
+  <span class="sr-only">Danger</span>
+  <div>
+    <span class="font-medium">Ensure that these requirements are met:</span>
+      <ul class="mt-1.5 list-disc list-inside">
+        @if (registerforms.get('rePassword')?.getError('required')) {
+              <li>password is required</li>
+        }
+
+              <li>password is not rematch.</li>
+        
+      
+    </ul>
+  </div>
+
+</div>
+    }
+
+</div>
+        <div class="mb-3 px-7">
+    <label for="phone" class="block mb-2 text-sm font-bold text-green-600" >phone : </label>
+    <input formControlName="phone"  type="tel" id="phone" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 d">
+            @if (registerforms.get('phone')?.errors && registerforms.get('phone')?.touched) {
+        <div class="flex p-4 mb-4 my-3 text-sm text-red-800 rounded-lg bg-red-100 " role="alert">
+  <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+ 
+  <span class="sr-only">Danger</span>
+  <div>
+    <span class="font-medium">Ensure that these requirements are met:</span>
+      <ul class="mt-1.5 list-disc list-inside">
+        @if (registerforms.get('phone')?.getError('required')) {
+              <li>phone is required</li>
+        }
+      
+        @if (registerforms.get('phone')?.getError('pattern')) {
+              <li>    📱 Phone number must be an Egyptian number starting with 010, 011, 012, or 015 and be 11 digits.</li>
+        }
+      
+    </ul>
+  </div>
+
+</div>
+    }
+</div>
+@if (errorMsg) {
+    <p class="p-4 mb-4 my-3 text-sm text-red-800 rounded-lg bg-red-100 text-center">{{errorMsg}}</p>
+}
+@if (sucssesMsg) {
+    <p class="p-4 mb-4 my-3 text-sm text-green-800 rounded-lg bg-green-100 text-center">{{sucssesMsg}}</p>
+}
+
+<button [disabled]="this.registerforms.invalid" class="px-4 py-3 bg-green-600 mx-auto cursor-pointer block text-white rounded-lg hover:bg-green-800 transition-all disabled:bg-green-200 disabled:cursor-default ">Register
+    @if (spinnier) {
+    <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+}
+</button>
+
+
+    </form>
+</section>
+
+  <img src="Sign up (1).gif" class="w-96 rounded-full" alt="">
+</div>

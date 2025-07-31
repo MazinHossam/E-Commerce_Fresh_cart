@@ -1,0 +1,19 @@
+<section class="pb-5 p-5 dark:bg-gray-800/70 rounded-xl mb-14 pt-0 mt-14 container w-11/12 mx-auto grid grid-cols-1 lg:grid-cols-[30%_minmax(0,1fr)] gap-6 items-start">
+
+<div class=" imges mx-5 rounded-4xl  shadow-[0_10px_40px_rgba(255,255,255,0.05)] shadow-emerald-600 ">
+    <img [src]="prodData.imageCover" alt="" class="rounded-4xl  w-full"></div>
+<div class="tittle relative top-1/6 ">
+    <h1 class="text-xl">{{prodData.description}}</h1>
+    <span class=" opacity-50 mt-4 block ">{{prodData.slug}}</span>
+
+
+   <div class="price_Rate mt-4 flex justify-between">
+<span class="text-green-800 font-semibold fa-xl dark:text-emerald-400 mt-2">{{   prodData.price | currency: "  EGP  " }} </span>
+<div class="rate">
+     <i class="fas fa-star text-yellow-400 mx-1"></i>
+    <span>{{prodData.ratingsAverage}} </span>
+</div>
+   </div>
+   <button (click)="addtocart()" class="bg-green-500 text-white text-center p-2 w-full rounded-lg mt-3 cursor-pointer transition-all hover:bg-green-700 ">Add cart</button>
+</div>
+</section>

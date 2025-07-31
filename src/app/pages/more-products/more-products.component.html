@@ -1,0 +1,70 @@
+<div class="container w-11/12 mx-auto my-12">
+  <div class="grid md:grid-cols-2 lg:grid-cols-4 xlg:grid-cols-5 gap-8">
+    @for (product of more ; track $index) {
+     <div data-aos="fade-up" class="bg-white/5 backdrop-blur-md rounded-3xl shadow-[0_10px_40px_rgba(255,255,255,0.05)] border border-white/20 hover:shadow-[0_10px_60px_rgba(0,255,100,0.8)] dark:hover:shadow-emerald-600 overflow-hidden transition-all hover:scale-[1.04] duration-800 "
+      >
+
+        <div class="relative group">
+          <img
+            [src]="product.imageCover"
+            alt=""
+            class="w-full h-64 object-cover rounded-t-3xl "
+          />
+          <div
+            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300"
+          >
+            <button [routerLink]="['/details', product._id]"
+              class="cursor-pointer text-white text-lg font-semibold tracking-wider flex items-center gap-1"
+            >
+              More
+              <i class="fas fa-chevron-right"></i>
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- معلومات المنتج -->
+             <div class="p-5  dark:bg-gray-800/70 h-full">
+                <p class="text-xs text-black uppercase font-medium tracking-wide mb-1 dark:text-white">
+
+            {{product.brand.name}}
+          </p>
+      <h3 class="text-black text-base font-semibold mb-4  leading-snug line-clamp-2 dark:text-white">
+            {{product.title.split(" ", 3).join(" ")}}
+          </h3>
+            <div class="flex items-center justify-between text-gray-300 text-sm">
+            <span>
+              <span class="text-zinc-400 fa-xl dark:text-gray-200">Price:</span>
+                 
+              <span class="text-green-800 font-semibold fa-xl dark:text-emerald-400">{{product.price}} EGP</span>
+            </span>
+            <div class="flex items-center gap-1">
+                <button (click)="toggleLike(product._id)">
+
+    <i
+      class="fa-solid fa-heart fa-xl transition duration-300"
+      [style.color]="likedProducts.has(product._id) ? 'red' : 'gray'"
+    ></i>
+  </button>
+              <i class="fas fa-star text-yellow-400 text-xs"></i>
+              <span>{{product.ratingsAverage}}</span>
+            </div>
+         
+          </div>
+             <button (click)="callcart(product._id)" class="bg-gradient-to-r from-[#2c9156] to-[#14523d] text-white text-center p-2 w-full rounded-lg mt-3 cursor-pointer transition-all hover:bg-green-700 ">Add cart</button>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- أزرار التنقل -->
+  <div class="flex justify-center gap-6 mt-12">
+    <button
+      (click)="back()"
+      class="cursor-pointer px-6 py-2 bg-gradient-to-r from-[#2c9156] to-[#54c8a1] text-white font-semibold tracking-wide rounded-full shadow-xl hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      <i class="fas fa-arrow-left mr-2"></i> Previous
+    </button>
+
+  </div>
+</div>

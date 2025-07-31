@@ -1,0 +1,28 @@
+<div class="py-7 container w-11/12 mx-auto">
+<div class="mt-6 grid gap-6 grid-cols-1 sm:grid-cols-2  " >
+
+ @for (order of orders; track $index) {
+  @for (item of order.cartItems; track $index) {
+    <div class="flex flex-col md:flex-row gap-4 aos-init aos-animate animate-fade-in  ease-out p-4 bg-white  mb-4 dark:text-white backdrop-blur-md  py-4 px-3 dark:bg-gray-800 rounded-3xl shadow-[0_10px_20px_rgba(255,255,255,0.05)] border border-white/20 transition-all duration-800 shadow-black dark:shadow-emerald-600"
+         data-aos="fade-right">
+      <div class="w-full md:w-1/4 flex justify-center">
+        <img loading="lazy" alt="Product Image"
+             class="w-32 h-full object-contain"
+             [src]="item.product.imageCover">
+      </div>
+      <div class="flex-1">
+        <h3 class="font-semibold text-lg">Order ID: <span class="text-mainColor">{{item.product.id}}</span></h3>
+        <p class="text-sm text-gray-500 dark:text-white/70">{{order.createdAt}}</p>
+        <p class="text-sm text-gray-500 dark:text-white/70">{{item.product.category.name}}</p>
+        <p class="text-sm text-gray-500 dark:text-white/70">Quantity: {{item.count}}</p>
+        <p class="text-sm text-gray-500 dark:text-white/70">Paid: ✅</p>
+        <p class="font-bold text-lg text-mainColor mt-2 dark:text-white/70">Total: {{order.totalOrderPrice}} EGP</p>
+      </div>
+    </div>
+  }
+}
+
+      
+
+</div>
+</div>

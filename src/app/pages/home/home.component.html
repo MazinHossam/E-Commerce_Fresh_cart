@@ -1,0 +1,79 @@
+<section class="pb-0 mb-0 pt-0 mt-3 container w-11/12 mx-auto">
+<div class="parent grid grid-cols-1 md:grid-cols-[70%_minmax(0,1fr)] gap-4">
+    <div>
+      <owl-carousel-o [options]="mainOptions">
+        <ng-template carouselSlide><img src="/slider-5.jpeg" alt="" class="w-full h-[300px] rounded-2xl object-cover"></ng-template>
+        <ng-template carouselSlide><img src="/slider-6.jpeg" alt="" class="w-full h-[300px] rounded-2xl object-cover"></ng-template>
+        <ng-template carouselSlide><img src="/slider-2.jpeg" alt="" class="w-full h-[300px] rounded-2xl object-cover"></ng-template>
+        <ng-template carouselSlide><img src="/img1.avif" alt="" class="w-full h-[300px] rounded-2xl object-cover"></ng-template>
+        <ng-template carouselSlide><img src="/img2.avif" alt="" class="w-full h-[300px] rounded-2xl object-cover"></ng-template>
+        <ng-template carouselSlide><img src="/img3.avif" alt="" class="w-full h-[300px] rounded-2xl object-cover"></ng-template>
+        <ng-template carouselSlide><img src="/img4.avif" alt="" class="w-full h-[300px] rounded-2xl object-cover"></ng-template>
+        <ng-template carouselSlide><img src="/img5.avif" alt="" class="w-full h-[300px] rounded-2xl object-cover"></ng-template>
+        <ng-template carouselSlide><img src="/img6.avif" alt="" class="w-full h-[300px] rounded-2xl object-cover"></ng-template>
+        <ng-template carouselSlide><img src="/img7.avif" alt="" class="w-full h-[300px] rounded-2xl object-cover"></ng-template>
+      </owl-carousel-o>
+    </div>
+    <div class="flex flex-col gap-4">
+      <img src="/slider-4.jpeg" class="w-full h-[150px] object-cover rounded-2xl shadow-md" alt="">
+      <img src="/slider-3.jpeg" class="w-full h-[150px] object-cover rounded-2xl shadow-md" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="pb-5 mb-5 pt-0 mt-1">
+  <div class="container w-11/12 mx-auto">
+    <div class="slider-cat my-6">
+      <owl-carousel-o [options]="customOptions">
+        @for (slide of mycategory; track $index ) {
+          <ng-template carouselSlide [id]="slide._id">
+            <div class="img-slider">
+              <img [src]="slide.image" [alt]="slide.createdAt" [title]="slide.name" class="w-full h-[250px] object-cover rounded-xl shadow-lg">
+            </div>
+            <h1 class="text-center text-lg mt-2 text-black-200 font-medium">{{slide.name}}</h1>
+          </ng-template>
+        }
+      </owl-carousel-o>
+    </div>
+
+    <input [(ngModel)]="searchItem" placeholder="Search..." type="text" class="text-black border border-gray-600  text-sm rounded-lg focus:ring-green-600 focus:border-green-500 block w-1/2 p-2.5 m-5 mx-auto placeholder-black">
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 xlg:grid-cols-5 gap-8">
+      @for (product of myproduct.slice(0, 20) | search:searchItem; track $index) {
+          <div 
+ data-aos="fade-up"
+       
+          class="bg-white/5  rounded-3xl shadow-[0_10px_40px_rgba(255,255,255,0.05)] border-white/20 hover:shadow-[0_10px_60px_rgba(0,255,100,0.8)] dark:hover:shadow-emerald-600  transition-all hover:scale-[1.04] duration-1000 flex flex-col"
+        >
+          <div class="relative group">
+            <img [src]="product.imageCover" alt="" class="w-full h-64 object-cover rounded-t-3xl">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+              <button [routerLink]="['/details', product._id]" class="cursor-pointer text-white text-lg font-semibold tracking-wider flex items-center gap-1">
+                More
+                <i class="fas fa-chevron-right"></i>
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5  dark:bg-gray-800/70">
+            <p class="text-xs text-black uppercase font-medium tracking-wide mb-1 dark:text-white">{{product.brand.name}}</p>
+            <h3 class="text-black text-base font-semibold mb-3 leading-snug line-clamp-2 dark:text-white">{{product.title.split(" ", 3).join(" ")}}</h3>
+            <div class="flex items-center justify-between text-gray-300 text-sm">
+              <span>
+                <span class="text-zinc-400 fa-xl dark:text-gray-200">Price:</span>
+                <span class="text-green-800 font-semibold fa-xl dark:text-emerald-400">{{product.price}} EGP</span>
+              </span>
+              <div class="flex items-center gap-1 dark:text-gray-300">
+                <i class="fas fa-star text-yellow-400 dark:text-yellow-200 text-xs"></i>
+                <span class="text-gray-300">{{product.ratingsAverage}}</span>
+              </div>
+            </div>
+            <button (click)="callcart(product._id)" class=" dark:from-emerald-600 dark:to-emerald-800 bg-gradient-to-r from-[#2c9156] to-[#14523d] text-white text-center p-2 w-full rounded-lg mt-3 cursor-pointer transition-all hover:bg-green-700">
+              Add cart
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

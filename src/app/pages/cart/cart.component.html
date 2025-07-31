@@ -1,0 +1,63 @@
+<div class="max-w-5xl  my-7 px-4">
+  <h1 class="text-3xl font-bold mb-6 text-center sm:text-left">🛒 Your Shopping Cart</h1>
+</div>
+
+<div class="container mx-auto px-4 py-8 mb-14">
+  @if(myCart?.totalCartPrice) {
+    <div class="flex justify-center sm:justify-end text-right mb-4">
+      <button (click)="ClearCart()" class="cursor-pointer bg-red-100 text-red-600 border border-red-300 hover:bg-red-600 hover:text-white transition px-4 py-2 rounded-lg shadow-sm font-semibold flex items-center gap-2 mx-1 text-sm sm:text-base">
+        <i class="fas fa-trash-alt"></i>
+        Clear Cart
+      </button>
+    </div>
+
+    @for (CartP of myCart.products; track CartP._id) {
+      <div class="dark:bg-gray-800 shadow-[0_10px_40px_rgba(255,255,255,0.05)] border border-white/20 hover:shadow-[0_10px_60px_rgba(0,255,100,0.8)] dark:hover:shadow-emerald-600 overflow-hidden transition-all hover:scale-[1.04] duration-800 flex flex-col sm:flex-row items-center justify-between border-b pb-4 mb-6">
+        <div class="flex items-center gap-4 w-full sm:w-4/12 mt-3">
+          <img [src]="CartP.product.imageCover" alt="" class="w-24 h-24 object-cover rounded-2xl shadow-2xl" />
+          <div class="detils w-full sm:w-28 block whitespace-nowrap">
+            <h2 class="text-lg font-semibold capitalize">{{CartP.product.brand.name}}</h2>
+            <span class="text-sm sm:text-lg text-gray-500 dark:text-white">{{CartP.product.category.slug}}</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4 sm:mt-0 font-bold text-xl">
+          <div class="flex items-center border rounded dark:bg-white dark:text-black">
+            <button (click)="UpdateCartQuantity(CartP.count - 1, CartP.product._id)" class="px-2 py-1 text-lg">-</button>
+            <span class="px-3">{{CartP.count}}</span>
+            <button (click)="UpdateCartQuantity(CartP.count + 1, CartP.product._id)" class="px-2 py-1 text-lg">+</button>
+          </div>
+          <p class="w-24 text-right">{{CartP.price | currency:'EGP':'symbol-narrow' }}</p>
+          <button (click)="RemoveItem(CartP.product._id)" class="flex items-center gap-1 text-red-600 hover:text-white hover:bg-red-600 px-3 py-1 rounded transition">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    }
+
+    <div class="mt-6 p-6 bg-gradient-to-r from-green-500 to-green-700 dark:from-emerald-600 dark:to-emerald-800 rounded-xl shadow-lg flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-4 sm:gap-0">
+      <h2 class="text-xl font-bold text-gray-100 dark:text-white">
+        🧾 Total Price:
+      </h2>
+      <p class="text-3xl font-extrabold text-white tracking-wide">
+        {{ myCart.totalCartPrice | currency:'EGP':'symbol-narrow' }}
+      </p>
+    </div>
+
+    <div class="pt-4 text-center sm:text-right mt-4">
+      <button [routerLink]="['/checkout', myCart._id]" class="cursor-pointer mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        Proceed to Checkout
+      </button>
+    </div>
+  }
+  @else {
+    <div class="p-6 text-center dark:bg-gray-800/70 bg-white/5 backdrop-blur-md rounded-3xl border border-white/20 shadow-lg transition-all duration-800">
+      <img src="No Item In Box.gif" alt="Empty Cart" class="mx-auto w-52 sm:w-60 mb-4 opacity-80" />
+      <h2 class="text-xl font-semibold mb-2 text-gray-600 dark:text-white">Your cart is empty!</h2>
+      <p class="text-gray-500 mb-4 dark:text-white">Looks like you haven’t added anything yet.</p>
+      <a routerLink="/Home" class="cursor-pointer inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+        🛍️ Start Shopping
+      </a>
+    </div>
+  }
+</div>

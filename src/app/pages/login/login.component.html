@@ -1,0 +1,83 @@
+
+<div class="foto flex flex-col lg:flex-row justify-evenly items-center my-7 mb-7 ">
+<section  class=" w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-5/12  my-7 rounded-lg shadow-lg">
+    <form action="" [formGroup]="loginForm" (ngSubmit)="submit()" class=" py-4 px-3 dark:bg-gray-800 rounded-3xl shadow-[0_10px_40px_rgba(255,255,255,0.05)] border border-white/20 transition-all duration-800  dark:shadow-emerald-600">
+           <h1 class="font-bold text-4xl text-green-600 p-5 my-5">login now : </h1>
+        <div class="mb-3 px-7">
+    <label for="email" class="block mb-2 text-sm font-bold text-green-600" >Email : </label>
+    <input formControlName="email"  type="email" id="email" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 d">
+
+       @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched) {
+        <div class="flex p-4 mb-4 my-3 text-sm text-red-800 rounded-lg bg-red-100 " role="alert">
+  <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+ 
+  <span class="sr-only">Danger</span>
+  <div>
+    <span class="font-medium">Ensure that these requirements are met:</span>
+      <ul class="mt-1.5 list-disc list-inside">
+        @if (loginForm.get('email')?.getError('required')) {
+              <li>Email is required</li>
+        }
+      
+        @if (loginForm.get('email')?.getError('email')) {
+              <li>Please enter a valid email address so we can contact</li>
+        }
+      
+    </ul>
+  </div>
+
+</div>
+    }
+
+</div>
+        <div class="mb-3 px-7">
+    <label for="password" class="block mb-2 text-sm font-bold text-green-600" >password : </label>
+    <input formControlName="password"  type="password" id="password" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 d">
+         @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched) {
+        <div class="flex p-4 mb-4 my-3 text-sm text-red-800 rounded-lg bg-red-100 " role="alert">
+  <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+ 
+  <span class="sr-only">Danger</span>
+  <div>
+    <span class="font-medium">Ensure that these requirements are met:</span>
+      <ul class="mt-1.5 list-disc list-inside">
+        @if (loginForm.get('password')?.getError('required')) {
+              <li>password is required</li>
+        }
+      
+        @if (loginForm.get('password')?.getError('pattern')) {
+              <li>🔒 Password must be 6+ characters and contain only letters and numbers.</li>
+        }
+      
+    </ul>
+  </div>
+
+</div>
+    }
+
+</div>
+
+
+
+@if (sucssesMsg) {
+  <p class="p-4 mb-4 my-3 text-sm text-green-800 rounded-lg bg-green-100 text-center ">{{sucssesMsg}}</p>
+}@if(errorMsg){
+    <p class="p-4 mb-4 my-3 text-sm text-red-800 rounded-lg bg-red-100  text-center">{{errorMsg}}</p>
+}
+<div class="btns justify-center flex flex-row mx-auto ">
+  <a class="cursor-pointer m-3 block dark:text-white" routerLink="/Forget"  >Forget Password ?</a>
+<button  class="px-4 py-3 bg-green-600  cursor-pointer block text-white rounded-lg hover:bg-green-800 transition-all disabled:bg-green-200 disabled:cursor-default ">Log in
+    @if (spinnier) {
+    <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+}
+</button>
+</div>
+
+    </form>
+</section>
+<img src="Tablet login.gif" class="w-96 rounded-full" alt="">
+</div>

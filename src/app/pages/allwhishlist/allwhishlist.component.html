@@ -1,0 +1,74 @@
+<div class="container mx-auto px-4 py-8">
+  <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-5"> 
+    My Wishlist  
+    <i class="fa-solid fa-heart fa-xl transition duration-300 text-red-600"></i>
+  </h2>
+
+@if (!allWhishlist) {
+  <!-- Loading... -->
+}
+@else if (allWhishlist.data?.length === 0) {
+<div class="my-16 empty flex justify-evenly lg:flex-row items-center dark:bg-gray-800/70 bg-white/5 backdrop-blur-md rounded-3xl border border-white/20 shadow-[0_10px_60px_rgba(0,255,,0.8)] dark:shadow-emerald-500 overflow-hidden transition-all duration-800">
+      <div class="grid md:grid-cols-1 lg:grid-cols-2 xlg:grid-cols-2 gap-2 mt-7">
+        <div class="text text-center text-gray-700 px-4 my-auto dark:text-white">
+          <h1 class="text-2xl font-semibold mb-2">Your Wishlist is Empty! 💔 😔</h1>
+          <p class="text-base">
+            Looks like you haven’t added any products to your wishlist yet.<br />
+            Start exploring and tap the button to save your favorites!
+          </p>
+          <a routerLink="/products"
+            class="block bg-green-700 text-white text-center p-3 px-5 rounded-lg mt-3 cursor-pointer transition-all hover:bg-green-700 font-extrabold">
+            Products <i class="fa-regular fa-heart ps-2"></i>
+          </a>
+        </div>
+        <div class="imgEmpty flex">
+          <img src="Woman Shopping Online (1).gif" class="w-full" />
+        </div>
+      </div>
+    </div>
+
+}
+@else {
+   <div class="grid md:grid-cols-2 lg:grid-cols-4 xlg:grid-cols-5 gap-8 my-12">
+  @for ( items of allWhishlist.data; track $index) {
+        <div 
+       
+          class="bg-white/5  rounded-3xl shadow-[0_10px_40px_rgba(255,255,255,0.05)] border-white/20 hover:shadow-[0_10px_60px_rgba(0,255,100,0.8)] dark:hover:shadow-emerald-600  transition-all hover:scale-[1.04] duration-1000 flex flex-col"
+        >
+          <div class="relative group">
+            <img [src]="items.imageCover" class="w-full h-64 object-cover rounded-t-3xl" />
+            <button (click)="remove(items._id)"
+              class="absolute top-3 right-3 bg-white/80 hover:bg-white text-red-600 rounded-full p-2 shadow-sm transition z-10">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+         
+          </div>
+
+          <div class="p-4 flex flex-col justify-between h-full dark:bg-gray-800/70">
+            <div>
+              <h3 class="text-base font-semibold text-black mb-1 line-clamp-2 dark:text-white">{{ items.title }}</h3>
+              <p class="text-xs text-black mb-2 dark:text-gray-200">
+                Brand: <span class="font-medium dark:text-white">{{ items.brand.name }}</span>
+              </p>
+            </div>
+
+            <div class="flex justify-between items-center mt-auto text-sm text-zinc-400 dark:text-gray-200">
+              <span class="text-green-800 font-semibold dark:text-emerald-400 fa-xl">{{ items.price }} EGP</span>
+              <span class="flex items-center gap-1 text-yellow-400">
+                <i class="fas fa-star"></i> 
+                <span class="text-gray-600 dark:text-gray-300">{{ items.ratingsAverage }}</span>
+              </span>
+            </div>
+
+            <button [routerLink]="['/details', items._id]"
+              class="cursor-pointer mt-4 bg-gradient-to-r from-[#2c9156] to-[#14523d] text-white py-2 rounded-lg font-semibold w-full hover:bg-green-700 transition">
+              View Product
+            </button>
+          </div>
+        </div>
+   
+  }
+  </div>
+
+}
+</div>

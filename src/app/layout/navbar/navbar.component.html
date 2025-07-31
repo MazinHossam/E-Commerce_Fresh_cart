@@ -1,0 +1,130 @@
+<nav [ngClass]="{
+    '  fixed z-100 right-0 left-0  bg-gray-300/5  dark:bg-gray-800/80 backdrop-blur-3xl dark:backdrop-blur-3xl shadow-lg pb-5 opacity-100 ': isScrolled,
+
+    '  ': !isScrolled
+  }" class=" transition-all duration-1000  pb-5 bg-gray-300 shadow-xl dark:bg-black dark:text-white ">
+  <div class="dark:text-white max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <!-- <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse"> -->
+    <img src="/freshcart-logo.svg" class="h-8" alt="Flowbite Logo" />
+
+    <!-- </a> -->
+    <button data-collapse-toggle="navbar-default" type="button"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden "
+      aria-controls="navbar-default" aria-expanded="false">
+      <span class="sr-only">Open main menu</span>
+      <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M1 1h15M1 7h15M1 13h15" />
+      </svg>
+    </button>
+    <div class="ms-5 hidden w-full md:flex md:w-auto grow-5 justify-between dark:text-white" id="navbar-default">
+      <ul
+        class="dark:text-white capitalize font-medium flex flex-col  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-4 rtl:space-x-reverse md:mt-0 md:border-0  text-black ">
+        @if (islogin()) {
+
+
+
+        <li>
+          <a class="cursor-pointer block py-2 px-1   rounded-sm    "
+            routerLinkActive="bg-green-500 rounded-lg px-2 text-white dark:text-green-950 dark:bg-green-700"
+            routerLink="Home" aria-current="page">Home</a>
+        </li>
+        <li>
+          <a class="cursor-pointer block py-2 px-1  rounded-sm "
+            routerLinkActive="bg-green-500 rounded-lg px-2 text-white dark:text-green-950 dark:bg-green-700"
+            routerLink="products" aria-current="page">products</a>
+        </li>
+        <li>
+          <a class="cursor-pointer block py-2 px-1   rounded-sm    "
+            routerLinkActive="bg-green-500 rounded-lg px-2 text-white dark:text-green-950 dark:bg-green-700"
+            routerLink="cart" aria-current="page">cart</a>
+        </li>
+        <li>
+          <a class="cursor-pointer block py-2 px-1   rounded-sm   "
+            routerLinkActive="bg-green-500 rounded-lg px-2 text-white dark:text-green-950 dark:bg-green-700"
+            routerLink="brand" aria-current="page">brand</a>
+        </li>
+        <li>
+          <a class="cursor-pointer block py-2 px-1   rounded-sm   "
+            routerLinkActive="bg-green-500 rounded-lg px-2 text-white dark:text-green-950 dark:bg-green-700"
+            routerLink="category" aria-current="page">category</a>
+        </li>
+
+        <li>
+          <a class="cursor-pointer block py-2 px-1   rounded-sm   "
+            routerLinkActive="bg-green-500 rounded-lg px-2 text-white dark:text-green-950 dark:bg-green-700"
+            routerLink="whishlist" aria-current="page">whishlist</a>
+        </li>
+
+
+        }
+      </ul>
+
+      <ul
+        class="capitalize font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-4 rtl:space-x-reverse md:mt-0 md:border-0  ">
+        <button (click)="toggleDarkMode()" class=" text-2xl relative
+         transition-transform duration-500
+          dark:text-white hover:translate-y-[-0.5rem]">
+ @if (!isDark) {
+
+  <i class="fa-solid fa-sun"></i>
+  } @else {
+<i class="fa-solid fa-moon"></i>
+  }
+        </button>
+        <li>
+          <a class="cursor-pointer block py-2 px-1 text-gray-900  rounded-sm md:bg-transparent bg  dark:text-white "
+            aria-current="page"><i class="fa-brands fa-facebook"></i></a>
+        </li>
+
+        <li>
+          <a class="cursor-pointer block py-2 px-1 text-gray-900  rounded-sm md:bg-transparent bg dark:text-white  "
+            aria-current="page"><i class="fa-brands fa-instagram"></i></a>
+        </li>
+        <li>
+          <a class="cursor-pointer block py-2 px-1 text-gray-900  rounded-sm md:bg-transparent bg  dark:text-white "
+            aria-current="page"><i class="fa-brands fa-x-twitter"></i></a>
+        </li>
+        <li>
+          <a class="cursor-pointer block py-2 px-1 text-gray-900  rounded-sm md:bg-transparent bg  dark:text-white "
+            aria-current="page"><i class="fa-brands fa-tiktok"></i></a>
+        </li>
+
+        <li>
+          <a class="cursor-pointer block py-2 px-1 text-gray-900  rounded-sm md:bg-transparent bg  dark:text-white "
+            aria-current="page"><i class="fa-brands fa-youtube"></i></a>
+
+        </li>
+        <li>
+          <a class="cursor-pointer block py-2 px-1 text-gray-900  rounded-sm md:bg-transparent bg  dark:text-white "
+            aria-current="page"><i class="fa-brands fa-linkedin"></i></a>
+        </li>
+        @if (islogin()) {
+        <li>
+          <a class="cursor-pointer block py-2 px-1 text-gray-500  rounded-sm md:bg-transparent bg hover:text-red-400   transition-colors dark:text-red-800"
+            aria-current="page" (click)="registerService.signout()">Sign Out</a>
+        </li>
+        }
+        @else {
+
+
+        <li>
+          <a class="cursor-pointer block py-2 px-1 text-gray-500  rounded-sm     " routerLink="login"
+            routerLinkActive=" bg-green-500 rounded-lg text-white px-2" aria-current="page">log in </a>
+        </li>
+
+        <li>
+          <a class="cursor-pointer block py-2 px-1 rounded-sm  text-gray-500 " routerLink="register"
+            routerLinkActive=" bg-green-500 rounded-lg text-white px-2" aria-current="page">regester</a>
+        </li>
+
+        }
+
+
+
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
